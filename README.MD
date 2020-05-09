@@ -58,7 +58,9 @@ www  WEB部署目录（或者子目录）
 │  ├─mainTask.go        定时任务入口文件
 │  ├─TaskFactory.go     定时任务工厂方法  
 │  ├─TaskImpl.go        定时任务接口
-│  └─redis.go           redis单例
+│  └─list               定时任务实现目录
+|  |  ├─ FirstTask.go   第一个任务实现例子
+|  |  └─ ...            更多任务实现
 │  └─ ...               更多文件
 
 ├─thirdparty        第三方组件
