@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/config"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 	_ "scheduled/common"
@@ -20,9 +22,15 @@ func main() {
 }
 
 func initOrm() {
+	config, _ := config.NewConfig("ini", "./conf/mysql.conf")
+	host := config.String("host")
+	port := config.String("port")
+	username := config.String("username")
+	password := config.String("password")
+
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "root:1q@W3e$R@tcp(192.168.10.136:15642)/jlmj_config?charset=utf8")
-	orm.RegisterDataBase("recharge", "mysql", "root:1q@W3e$R@tcp(192.168.10.136:15642)/recharge?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/jlmj_config?charset=utf8",username,password,host,port))
+	orm.RegisterDataBase("recharge", "mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/recharge?charset=utf8",username,password,host,port))
 	//打印 orm 调试信息 ,如 sql
 	orm.Debug = true
 }
