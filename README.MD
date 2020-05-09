@@ -17,48 +17,48 @@ auth
 目录结构
 ~~~
 www  WEB部署目录（或者子目录）
-├─common           共用方法目录
-│  ├─aesEncrypt.go      aes加解密
-│  ├─R.go               统一结果返回结构体
-│  ├─readFile.go        文件读取
-│  ├─utils.go           工具类
+├─ common           共用方法目录
+│  ├─ aesEncrypt.go      aes加解密
+│  ├─ R.go               统一结果返回结构体
+│  ├─ readFile.go        文件读取
+│  ├─ utils.go           工具类
 │  └─ ...               更多文件
 │
-├─conf              配置目录
-│  ├─app.go             应用总配置
-│  ├─mysql.go           数据库配置
-│  └─redis.go           redis配置
+├─ conf              配置目录
+│  ├─ app.go             应用总配置
+│  ├─ mysql.go           数据库配置
+│  └─ redis.go           redis配置
 │  └─ ...               更多文件
 │
-├─controllers       控制器目录
-│  ├─default.go         默认控制器
+├─ controllers       控制器目录
+│  ├─ default.go         默认控制器
 │  ├─parent.go          父类控制器
 │  └─Task.go            任务管理控制器
 │  └─ ...               更多文件
 │  
-├─docker            docker运行目录
+├─ docker            docker运行目录
 │  └─ ...               更多文件
 │  
-├─models            模型
+├─ models            模型
 │  └─ ...               更多文件
 
-├─routers           路由
+├─ routers           路由
 │  └─ ...               更多文件
 
-├─services          服务
+├─ services          服务
 │  └─ ...               更多文件
 
-├─singleton         单例服务
-│  ├─cron.go            定时任务单例
-│  ├─logSingleton.go    日志单例    
-│  └─redis.go           redis单例
+├─ singleton         单例服务
+│  ├─ cron.go            定时任务单例
+│  ├─ logSingleton.go    日志单例    
+│  └─ redis.go           redis单例
 │  └─ ...               更多文件
 
-├─task              定时任务模块
-│  ├─mainTask.go        定时任务入口文件
-│  ├─TaskFactory.go     定时任务工厂方法  
-│  ├─TaskImpl.go        定时任务接口
-│  └─list               定时任务实现目录
+├─ task              定时任务模块
+│  ├─ mainTask.go        定时任务入口文件
+│  ├─ TaskFactory.go     定时任务工厂方法  
+│  ├─ TaskImpl.go        定时任务接口
+│  └─ list               定时任务实现目录
 |  |  ├─ FirstTask.go   第一个任务实现例子
 |  |  └─ ...            更多任务实现
 │  └─ ...               更多文件
