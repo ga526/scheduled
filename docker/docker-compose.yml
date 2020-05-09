@@ -1,0 +1,12 @@
+version: "3"
+services:
+  golang:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 7699:7699
+    volumes:
+      - ..:/go/src:rw
+    tty: true
+    command: "/go/src/docker/build.sh"
