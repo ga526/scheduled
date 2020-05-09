@@ -7,8 +7,6 @@ import (
 
 type FirstTask struct{
 	r common.R
-	taskName string
-	method string
 }
 
 func (this FirstTask) Todo(){

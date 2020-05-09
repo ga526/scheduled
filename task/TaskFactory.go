@@ -33,14 +33,14 @@ func (this *TaskFactory) GetTask(taskName string) TaskImpl {
 func (this *TaskFactory) RunTask(task TaskImpl,taskName string,method string){
 	v := reflect.ValueOf(task).Elem() //task需要是引用
 	m := v.MethodByName(method)
-	this.Begin(taskName,method)
+	this.begin(taskName,method)
 	m.Call([]reflect.Value{})
-	this.End(taskName,method)
+	this.end(taskName,method)
 }
 
 
 
-func (this *TaskFactory) Begin(taskName string,method string){
+func (this *TaskFactory) begin(taskName string,method string){
 	cron := models.Cron{}
 	cron.TaskName = taskName
 	cron.Method = method
@@ -53,7 +53,7 @@ func (this *TaskFactory) Begin(taskName string,method string){
 	o.Update(&cron,"status")
 }
 
-func (this *TaskFactory) End(taskName string,method string){
+func (this *TaskFactory) end(taskName string,method string){
 	cron := models.Cron{}
 	cron.TaskName = taskName
 	cron.Method = method

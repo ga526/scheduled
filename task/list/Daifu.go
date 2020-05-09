@@ -16,8 +16,6 @@ import (
  */
 type Daifu struct {
 	r        common.R
-	taskName string
-	method   string
 }
 
 

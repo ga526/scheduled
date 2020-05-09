@@ -12,8 +12,6 @@ import (
  */
 type FirstPayActive struct{
 	r common.R
-	taskName string
-	method string
 }
 
 func (this FirstPayActive) Todo(){
