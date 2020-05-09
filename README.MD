@@ -14,10 +14,57 @@ auth
 2. 正常来说，只需要在 task 目录下添加自己的任务文件
 3. 需要在 task/TaskFactory 下添加相应方法
 
-配置文件地址
-1. main.go   数据库地址
-2. singleton\redis.go  redis 地址
-3. task\list\MultiplyDomain  短信配置
+目录结构
+~~~
+www  WEB部署目录（或者子目录）
+├─common           共用方法目录
+│  ├─aesEncrypt.go      aes加解密
+│  ├─R.go               统一结果返回结构体
+│  ├─readFile.go        文件读取
+│  ├─utils.go           工具类
+│  └─ ...               更多文件
+│
+├─conf              配置目录
+│  ├─app.go             应用总配置
+│  ├─mysql.go           数据库配置
+│  └─redis.go           redis配置
+│  └─ ...               更多文件
+│
+├─controllers       控制器目录
+│  ├─default.go         默认控制器
+│  ├─parent.go          父类控制器
+│  └─Task.go            任务管理控制器
+│  └─ ...               更多文件
+│  
+├─docker            docker运行目录
+│  └─ ...               更多文件
+│  
+├─models            模型
+│  └─ ...               更多文件
+
+├─routers           路由
+│  └─ ...               更多文件
+
+├─services          服务
+│  └─ ...               更多文件
+
+├─singleton         单例服务
+│  ├─cron.go            定时任务单例
+│  ├─logSingleton.go    日志单例    
+│  └─redis.go           redis单例
+│  └─ ...               更多文件
+
+├─task              定时任务模块
+│  ├─mainTask.go        定时任务入口文件
+│  ├─TaskFactory.go     定时任务工厂方法  
+│  ├─TaskImpl.go        定时任务接口
+│  └─redis.go           redis单例
+│  └─ ...               更多文件
+
+├─thirdparty        第三方组件
+│  └─ ...               更多文件
+~~~
+
 
 Docker 运行
 1. docker/build.sh 需要执行权限

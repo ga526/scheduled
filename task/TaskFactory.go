@@ -12,7 +12,7 @@ import (
  */
 type TaskFactory struct{}
 
-func (this *TaskFactory) Todo(taskName string, method string) {
+func (this *TaskFactory) GetTask(taskName string) TaskImpl {
 	/*  由于 golang 无法直接根据字符串反射出类型实例(https://stackoverflow.com/questions/23030884/is-there-a-way-to-create-an-instance-of-a-struct-from-a-string)
 	 *  所以需要手动写入，或者遍历文件夹去写一个注册器（）
 	 */
@@ -27,16 +27,20 @@ func (this *TaskFactory) Todo(taskName string, method string) {
 	default:
 		panic("hasn't this task : " + taskName)
 	}
+	return task
+}
 
-	this.begin(taskName,method)
+func (this *TaskFactory) RunTask(task TaskImpl,taskName string,method string){
 	v := reflect.ValueOf(task).Elem() //task需要是引用
 	m := v.MethodByName(method)
+	this.Begin(taskName,method)
 	m.Call([]reflect.Value{})
-	this.end(taskName,method)
+	this.End(taskName,method)
 }
 
 
-func (this *TaskFactory) begin(taskName string,method string){
+
+func (this *TaskFactory) Begin(taskName string,method string){
 	cron := models.Cron{}
 	cron.TaskName = taskName
 	cron.Method = method
@@ -49,7 +53,7 @@ func (this *TaskFactory) begin(taskName string,method string){
 	o.Update(&cron,"status")
 }
 
-func (this *TaskFactory) end(taskName string,method string){
+func (this *TaskFactory) End(taskName string,method string){
 	cron := models.Cron{}
 	cron.TaskName = taskName
 	cron.Method = method

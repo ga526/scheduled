@@ -110,7 +110,10 @@ func (this *Task) _start(cronID int) common.R {
 	methodName := cron.Method
 	taskFactory := task.TaskFactory{}
 	entryID, err := cronO.AddFunc(cronStr, func() {
-		taskFactory.Todo(taskName, methodName)
+
+		task := taskFactory.GetTask(taskName)
+		taskFactory.RunTask(task,taskName,methodName)
+
 	})
 	cron.Status = 2
 	cron.Error = ""
@@ -136,7 +139,8 @@ func (this *Task) _todo(cronID int) common.R {
 	taskName := cron.TaskName
 	methodName := cron.Method
 	taskFactory := task.TaskFactory{}
-	taskFactory.Todo(taskName, methodName)
+	task := taskFactory.GetTask(taskName)
+	taskFactory.RunTask(task,taskName,methodName)
 	cron.Status = cron.Status
 	_, err = o.Update(&cron)
 	if err != nil {

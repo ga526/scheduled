@@ -34,7 +34,10 @@ func (this *MainTask) Todo() {
 		MethodName := value.Method
 		//3. 将任务插入到执行列表
 		entryID,err := CronO.AddFunc(cronStr, func() {
-			taskFactory.Todo(TaskName, MethodName)
+
+			task := taskFactory.GetTask(TaskName)
+			taskFactory.RunTask(task,TaskName,MethodName)
+
 		})
 
 		if err != nil {
