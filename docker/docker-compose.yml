@@ -5,8 +5,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 7699:7699
+      - 8089:8089
     volumes:
       - ..:/go/src:rw
     tty: true
-    command: "/go/src/docker/build.sh"
+    working_dir: /go/src
+    #command: "/go/src/docker/build.sh"
+    command: /bin/bash -c "/go/src/docker/build.sh && bash"
